@@ -63,24 +63,26 @@ public class PlayerController : MonoBehaviour
         {
             curMovementinput = context.ReadValue<Vector2>(); //키가 눌리면 값을 받아온다.
 
-            _animator.SetTrigger("IsRun");
-            
+            _animator.SetBool("IsRun", true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementinput = Vector2.zero;
-
-            _animator.SetTrigger("IsRun");
+            _animator.SetBool("IsRun", false);
         }
+
     }
 
     void CameraLook()
     {//캐릭터가 좌우로 회전하려면 y 값을 변경해줘야 한다.
         camCurXRot += mouseDelta.y * lookSensitivity; //민감도
         camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook); //최소값보다 작으면 최소값을, 최대값보다 크면 최대값을 반환
+
         cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+
+        
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -90,10 +92,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Performed && IsGrounded())
         {
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            _animator.SetBool("IsJump", true);
         }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            _animator.SetBool("IsJump", false);
+        }
+
     }
 
     bool IsGrounded()
@@ -117,5 +125,11 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+
+    //bool FrontRay()
+    //{
+
+    //}
+
 }
 

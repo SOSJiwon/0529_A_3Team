@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a664c074-b7b8-41a1-9627-14f8b287b481",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Move",
@@ -55,6 +55,15 @@
                     "type": "Value",
                     "id": "a59c79a1-004c-4be2-9261-c04602188e88",
                     "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "StayLook",
+                    "type": "Value",
+                    "id": "a52f5500-695c-4de1-8eb3-b8375a38b936",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -168,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39a3a27a-e0ba-4086-b4c7-93efa64fe466",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StayLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
